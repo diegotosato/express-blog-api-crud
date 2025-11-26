@@ -14,9 +14,5 @@ app.get('/', (req, res) => {
     res.send('Home Page')
 })
 
-
-
-
-
 //Resource: Posts
 app.use('/api/posts', postsRouter)
