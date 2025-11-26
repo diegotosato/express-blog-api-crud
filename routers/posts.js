@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const listOfPosts = require('../data/posts')
+const menu = require('../data/menu')
 
 //index
 router.get('/', (req, res) => {
     // res.send('Lista dei i post')
-    res.json(listOfPosts)
+    res.json(menu)
 })
 
 //show
 router.get('/:id', (req, res) => {
     // res.send(`Mostrami il post con id: ${req.params.id}`)
-    res.json(listOfPosts.find(post => post.id === Number(req.params.id)))
+    res.json(menu.find(post => post.id === Number(req.params.id)))
 })
 
 //store
