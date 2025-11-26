@@ -1,4 +1,5 @@
 //importo il menu
+const { error } = require('console')
 const menu = require('../data/menu')
 
 //preparo tutte le funzioni
@@ -17,6 +18,19 @@ function show(req, res) {
     const findPost = menu.find(post => post.id === id)
 
     //restituisco in formato json il post trovato
+    // res.json(findPost)
+
+    //se il post non esiste, allora setto lo status su 404 (not found), e restituisco un oggetto che contiene status, errore e un messaggio
+    if (!findPost) {
+        res.sendStatus(404)
+
+        return res.json({
+            status: 404,
+            error: 'Not found',
+            message: 'Il post non esiste'
+        })
+    }
+
     res.json(findPost)
 }
 
