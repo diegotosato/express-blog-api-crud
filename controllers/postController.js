@@ -57,6 +57,17 @@ function destroy(req, res) {
     //filtro il menu ed estraggo il sinoglo post il cui id è uguale ad id
     const deletePost = menu.find(post => post.id === id)
 
+    //se il post non esiste, allora setto lo status su 404 (not found), e restituisco un oggetto che contiene status, errore e un messaggio
+    if (!deletePost) {
+        res.sendStatus(404)
+
+        return res.json({
+            status: 404,
+            error: 'Not found',
+            message: 'Il post non esiste'
+        })
+    }
+
     //metodo splice per rimuovere il post desiderato
     //recupero la posizione nell'array del post da eliminare, dichiaro dopo la virgola quanti elementi rimuovere
     menu.splice(menu.indexOf(deletePost), 1);
