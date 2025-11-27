@@ -56,6 +56,12 @@ function show(req, res) {
 
 //store (.post)
 function store(req, res) {
+
+    //recupero i dati in entrata parsati in server.js in fromato json
+    const postData = req.body
+    //log in console dei dati in entrata
+    console.log(postData);
+
     res.send('Aggiungi un nuovo post')
 }
 
