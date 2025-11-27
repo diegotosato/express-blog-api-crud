@@ -62,7 +62,26 @@ function store(req, res) {
     //log in console dei dati in entrata
     console.log(postData);
 
-    res.send('Aggiungi un nuovo post')
+    //creo un nuovo id dinamico che si adatta alla lunghezza dell'array
+    const newID = menu[menu.length - 1].id + 1
+
+    //creo la struttura del nuovo oggetto che sta entrando e assegno i singoli valori
+    const newPost = {
+        id: newID,
+        title: postData.title,
+        content: postData.content,
+        image: postData.image,
+        tags: postData.tags
+    }
+
+    //pusho nell'array il nuovo oggetto
+    menu.push(newPost)
+
+    //setto lo status della chiamata, indicando che la richiesta HTTP ha portato alla creazione di una nuova risorsa sul server
+    res.status(201)
+
+    //restituisco in formato json il nuovo oggetto
+    res.json(newPost)
 }
 
 //update (.put)
