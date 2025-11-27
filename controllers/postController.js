@@ -29,6 +29,10 @@ function index(req, res) {
     res.json(filteredMenu)
 }
 
+
+
+
+
 //show (.get)
 function show(req, res) {
     //converto l'ID in numero
@@ -53,6 +57,11 @@ function show(req, res) {
 
     res.json(findPost)
 }
+
+
+
+
+
 
 //store (.post)
 function store(req, res) {
@@ -83,6 +92,11 @@ function store(req, res) {
     //restituisco in formato json il nuovo oggetto
     res.json(newPost)
 }
+
+
+
+
+
 
 //update (.put)
 function update(req, res) {
@@ -117,10 +131,20 @@ function update(req, res) {
     res.json(findPost)
 }
 
+
+
+
+
+
 //modify (.patch)
 function modify(req, res) {
     res.send(`Modifica PARZIALMENTE il post con id: ${req.params.id}`)
 }
+
+
+
+
+
 
 //destroy (.delete)
 function destroy(req, res) {
