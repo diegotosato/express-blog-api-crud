@@ -86,7 +86,35 @@ function store(req, res) {
 
 //update (.put)
 function update(req, res) {
-    res.send(`Modifica INTERAMENTE il post con id: ${req.params.id}`)
+    //converto l'ID in numero
+    const id = Number(req.params.id)
+
+    //recupero i dati in entrata parsati in server.js in formato json
+    const updateData = req.body
+
+    //filtro il menu ed estraggo il singolo post il cui id è uguale ad id
+    const findPost = menu.find(post => post.id === id)
+
+    //se il post non esiste, allora setto lo status su 404 (not found), e restituisco un oggetto che contiene status, errore e un messaggio
+    if (!findPost) {
+        res.sendStatus(404)
+
+        return res.json({
+            status: 404,
+            error: 'Not found',
+            message: 'Il post non esiste'
+        })
+    }
+
+    //ogni chiave dell'oggetto viene aggiornata con i dati in entrata
+    findPost.id = id,
+        findPost.title = updateData.title,
+        findPost.content = updateData.content,
+        findPost.image = updateData.image,
+        findPost.tags = updateData.tags
+
+    //restituisco l'oggetto aggiornato
+    res.json(findPost)
 }
 
 //modify (.patch)
