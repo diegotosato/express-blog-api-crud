@@ -5,6 +5,9 @@ const PORT = 3000
 //importo la middleware per gestire gli errori
 const handleError = require('./middlewares/handleError')
 
+//importo la middleware per gestire entrypoint inesistenti
+const notFound = require('./middlewares/notFound')
+
 const postsRouter = require('./routers/posts')
 
 //imposto gli asset statici
@@ -28,5 +31,8 @@ app.get('/', (req, res) => {
 app.use('/api/posts', postsRouter)
 
 
-//la dichiaro a livello globale alla fine, dopo tutte le rotte
+//dichiaro la funzione per gestire gli errori a livello globale alla fine, dopo tutte le rotte
 app.use(handleError)
+
+//dichiaro la funzione per gestire gli entrypoint inesistenti a livello globale alla fine, dopo tutte le rotte
+app.use(notFound)
